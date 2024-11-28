@@ -18,7 +18,23 @@ string PolishRecord(string line) // 1 + 2 * 3
 		}
 		else if (line[i] == '+' || line[i] == '-' || line[i] == '*' || line[i] == '/')
 		{
-			operations.push(line[i]);
+			if (operations.empty())
+			{
+				operations.push(line[i]);
+			}
+			else
+			{
+				if ((operations.top() == '*' || operations.top() == '/') && (line[i] == '+' || line[i] == '-'))
+				{
+					postf += operations.top();
+					operations.pop();
+					operations.push(line[i]);
+				}
+				else
+				{
+					operations.push(line[i]);
+				}
+			}
 		}
 	}
 	while (!operations.empty())
@@ -91,6 +107,7 @@ int main()
 	//cout << "[()]{}): " << isBrackets("[()]{})");
 
 	cout << PolishRecord("1+2*3") << endl;
+	cout << PolishRecord("1*2+3") << endl;
 
 
 
