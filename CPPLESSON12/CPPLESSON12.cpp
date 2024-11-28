@@ -30,8 +30,16 @@ string PolishRecord(string line) // 1 + 2 * 3
 					operations.pop();
 					operations.push(line[i]);
 				}
-				else
+				else if (operations.top() == '*' && line[i] == '/' || operations.top() == '/' && line[i] == '*')
 				{
+					postf += operations.top();
+					operations.pop();
+					operations.push(line[i]);
+				}
+
+
+				else
+				{ 
 					operations.push(line[i]);
 				}
 			}
