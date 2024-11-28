@@ -9,7 +9,7 @@ using namespace myStack;
 string PolishRecord(string line) // 1 + 2 * 3
 {
 	string postf = "";
-	std::stack<char> operation;
+	std::stack<char> operations;
 	for (int i = 0; i < line.size(); i++)
 	{
 		if (isdigit(line[i]))
@@ -18,13 +18,13 @@ string PolishRecord(string line) // 1 + 2 * 3
 		}
 		else if (line[i] == '+' || line[i] == '-' || line[i] == '*' || line[i] == '/')
 		{
-			operation.push(line[i]);
+			operations.push(line[i]);
 		}
 	}
-	while (!operation.empty())
+	while (!operations.empty())
 	{
-		postf += operation.top();
-		operation.pop();
+		postf += operations.top();
+		operations.pop();
 	}
 	return postf;
 }
@@ -87,8 +87,10 @@ int main()
 	//	cout << "The word is not palindrome\n";
 	//}
 
-	cout << "[()]{}: " << isBrackets("[()]{}") << endl;
-	cout << "[()]{}): " << isBrackets("[()]{})");
+	//cout << "[()]{}: " << isBrackets("[()]{}") << endl;
+	//cout << "[()]{}): " << isBrackets("[()]{})");
+
+	cout << PolishRecord("1+2*3") << endl;
 
 
 
